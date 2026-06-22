@@ -380,3 +380,114 @@ document.getElementById(
 ).style.display = "none";
 
 }
+// CART PAGE LOAD
+
+if(document.getElementById("cartItems")){
+
+const savedCart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+cart = savedCart;
+
+loadCartPage();
+
+}
+
+function loadCartPage(){
+
+const cartDiv =
+document.getElementById("cartItems");
+
+const totalItemsEl =
+document.getElementById("totalItems");
+
+const grandTotalEl =
+document.getElementById("grandTotal");
+
+if(!cartDiv) return;
+
+if(cart.length === 0){
+
+cartDiv.innerHTML =
+"<h3>No Items Added</h3>";
+
+return;
+
+}
+
+let html = "";
+
+let totalItems = 0;
+
+let grandTotal = 0;
+
+cart.forEach((item,index)=>{
+
+const itemTotal =
+item.price * item.qty;
+
+totalItems +=
+parseInt(item.qty);
+
+grandTotal += itemTotal;
+
+html += `
+
+<div class="cart-item">
+
+<p>
+
+${item.name}
+
+<br>
+
+${item.type}
+
+<br>
+
+${item.weight}
+
+<br>
+
+Qty : ${item.qty}
+
+<br>
+
+Rs.${itemTotal}
+
+</p>
+
+<button onclick="removeCartItem(${index})">
+
+❌ Delete
+
+</button>
+
+</div>
+
+`;
+
+});
+
+cartDiv.innerHTML = html;
+
+totalItemsEl.innerHTML =
+totalItems;
+
+grandTotalEl.innerHTML =
+grandTotal;
+
+}
+
+function removeCartItem(index){
+
+cart.splice(index,1);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+loadCartPage();
+
+}
