@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -8,9 +7,9 @@
 
 <title>Napana Super</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -19,8 +18,11 @@
 <!-- LOADER -->
 
 <div id="loader">
-<img src="logo.png" alt="Logo">
+
+<img src="logo.png">
+
 <h2>Napana Super</h2>
+
 </div>
 
 <!-- HEADER -->
@@ -29,34 +31,29 @@
 
 <div class="logo-box">
 
-<img src="logo.png" alt="Logo">
+<img src="logo.png">
 
 <div>
+
 <h2>Napana Super</h2>
+
 <span>EST. 2019</span>
-</div>
 
 </div>
 
-<nav>
-
-<a href="#home">Home</a>
-<a href="#categories">Categories</a>
-<a href="#products">Products</a>
-<a href="#cart">Cart</a>
-<a href="#contact">Contact</a>
-
-</nav>
+</div>
 
 </header>
 
 <!-- HERO -->
 
-<section class="hero" id="home">
+<section class="hero">
+
+<div class="overlay"></div>
 
 <div class="hero-content">
 
-<img src="logo.png" class="hero-logo" alt="Logo">
+<img src="logo.png" class="hero-logo">
 
 <h1>NAPANA SUPER</h1>
 
@@ -72,222 +69,29 @@
 
 </div>
 
-<a href="#login" class="hero-btn">
+<a href="login.html" class="start-btn">
+
 Start Shopping
+
 </a>
 
 </div>
 
 </section>
 
-<!-- LOGIN -->
+<script>
 
-<section class="login-section" id="login">
+window.onload = function(){
 
-<h2>Customer Login</h2>
+setTimeout(function(){
 
-<div class="login-card">
+document.getElementById("loader").style.display="none";
 
-<input
-type="text"
-id="customerName"
-placeholder="Enter Your Name">
+},1500);
 
-<input
-type="number"
-id="customerPhone"
-placeholder="Phone Number">
+};
 
-<input
-type="text"
-id="customerAddress"
-placeholder="Address">
+</script>
 
-<button onclick="saveCustomer()">
-Continue
-</button>
-
-</div>
-
-</section>
-
-<!-- CATEGORIES -->
-
-<section class="categories" id="categories">
-
-<h2>Shop Categories</h2>
-
-<div class="category-grid">
-
-<div class="category-card">
-🍚
-<h3>Rice</h3>
-<p>Nipuna, Araliya & More</p>
-</div>
-
-<div class="category-card">
-🥤
-<h3>Beverages</h3>
-<p>Soft Drinks & Juices</p>
-</div>
-
-<div class="category-card">
-❄️
-<h3>Frozen Foods</h3>
-<p>Chicken, Fish & More</p>
-</div>
-
-<div class="category-card">
-👶
-<h3>Child Care</h3>
-<p>Baby Products</p>
-</div>
-
-<div class="category-card">
-🛒
-<h3>Groceries</h3>
-<p>Daily Essentials</p>
-</div>
-
-<div class="category-card">
-🏠
-<h3>Household</h3>
-<p>Cleaning Products</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- PRODUCTS -->
-
-<section class="products" id="products">
-
-<h2>Product Selection</h2>
-
-<input
-type="text"
-id="searchBox"
-placeholder="Search Products">
-
-<div class="product-builder">
-
-<select id="category">
-<option value="">Select Category</option>
-</select>
-
-<select id="brand">
-<option value="">Select Brand</option>
-</select>
-
-<select id="type">
-<option value="">Select Type</option>
-</select>
-
-<select id="weight">
-<option value="">Select Weight</option>
-</select>
-
-<input
-type="number"
-id="qty"
-value="1"
-min="1">
-
-<button onclick="addSelectedProduct()">
-Add To Cart
-</button>
-
-</div>
-
-</section>
-
-<!-- CART -->
-
-<section id="cart">
-
-<h2>Your Cart</h2>
-
-<div id="cartItems">
-No Items Added
-</div>
-
-<br>
-
-<select id="deliveryType">
-
-<option>Delivery</option>
-
-<option>Store Pickup</option>
-
-</select>
-
-<br><br>
-<button onclick="showBill()">
-Preview Bill
-</button>
-
-<button id="orderBtn">
-Place WhatsApp Order
-</button>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact" id="contact">
-
-<h2>Contact Us</h2>
-
-<div class="contact-box">
-
-<div>
-📞 0707103215
-</div>
-
-<div>
-📍 7/B Napana, Gunnapana
-</div>
-
-<div>
-🏪 EST. 2019
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-<img src="logo.png" alt="Logo">
-
-<h3>Napana Super</h3>
-
-<p>Quality & Value Every Day</p>
-
-<p>© 2026 Napana Super</p>
-
-</footer>
-
-<script src="products.js"></script>
-<script src="script.js"></script>
-
-<div id="billPopup" class="popup">
-
-<div class="popup-content">
-
-<h2>Order Preview</h2>
-
-<div id="billContent"></div>
-
-<button onclick="closeBill()">
-Close
-</button>
-
-</div>
-
-</div>
 </body>
 </html>
