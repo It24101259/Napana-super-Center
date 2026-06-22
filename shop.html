@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Napana Super Shop</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+<div class="logo-box">
+<img src="logo.png" alt="Logo">
+
+<div>
+<h2>Napana Super</h2>
+<span>EST. 2019</span>
+</div>
+
+</div>
+
+</header>
+
+<section class="products">
+
+<h2>Shop Products</h2>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search Products">
+
+<div class="product-builder">
+
+<select id="category">
+<option value="">Select Category</option>
+</select>
+
+<select id="brand">
+<option value="">Select Brand</option>
+</select>
+
+<select id="type">
+<option value="">Select Type</option>
+</select>
+
+<select id="weight">
+<option value="">Select Weight</option>
+</select>
+
+<div id="productPrice">
+Price : Rs.0
+</div>
+
+<div id="stockCount">
+Stock : 0
+</div>
+
+<input
+type="number"
+id="qty"
+value="1"
+min="1">
+
+<button onclick="addSelectedProduct()">
+Add To Cart
+</button>
+
+</div>
+
+<br>
+
+<div style="text-align:center;">
+
+<button onclick="goCart()">
+🛒 Proceed To Cart
+</button>
+
+</div>
+
+</section>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+
+<script>
+
+function goCart(){
+
+window.location.href="cart.html";
+
+}
+
+</script>
+
+</body>
+</html>
