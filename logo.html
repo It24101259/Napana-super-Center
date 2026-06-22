@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<section class="login-page">
+
+<div class="login-card">
+
+<img src="logo.png" class="login-logo">
+
+<h1>Customer Login</h1>
+
+<p>Enter your details to start shopping</p>
+
+<input
+type="text"
+id="customerName"
+placeholder="Full Name">
+
+<input
+type="number"
+id="customerPhone"
+placeholder="Phone Number">
+
+<input
+type="text"
+id="customerAddress"
+placeholder="Address">
+
+<button onclick="saveCustomer()">
+
+Continue Shopping
+
+</button>
+
+</div>
+
+</section>
+
+<script>
+
+function saveCustomer(){
+
+const name =
+document.getElementById("customerName").value;
+
+const phone =
+document.getElementById("customerPhone").value;
+
+const address =
+document.getElementById("customerAddress").value;
+
+if(name==="" || phone===""){
+
+alert("Please enter Name & Phone");
+
+return;
+
+}
+
+localStorage.setItem(
+"customerName",
+name
+);
+
+localStorage.setItem(
+"customerPhone",
+phone
+);
+
+localStorage.setItem(
+"customerAddress",
+address
+);
+
+window.location.href =
+"shop.html";
+
+}
+
+</script>
+
+</body>
+</html>
