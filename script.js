@@ -246,35 +246,98 @@ updateCart();
 
 // WHATSAPP ORDER
 
-document.getElementById("orderBtn").addEventListener("click", function(){
+const orderBtn =
+document.getElementById("orderBtn");
 
-if(cart.length === 0){
-alert("Cart is empty");
+if(orderBtn){
+
+orderBtn.addEventListener("click",function(){
+
+if(cart.length===0){
+
+alert("Cart is Empty");
+
 return;
+
 }
 
 const customerName =
-localStorage.getItem("customerName") || "Not Entered";
+localStorage.getItem("customerName") || "";
 
 const customerPhone =
-localStorage.getItem("customerPhone") || "Not Entered";
+localStorage.getItem("customerPhone") || "";
 
 const customerAddress =
-localStorage.getItem("customerAddress") || "Not Entered";
+localStorage.getItem("customerAddress") || "";
 
 const deliveryType =
 document.getElementById("deliveryType").value;
 
 let totalItems = 0;
+
 let grandTotal = 0;
 
 let message =
-"🛒 NAPANA SUPER PRE ORDER\n\n" +
-"👤 Customer : " + customerName + "\n" +
-"📞 Phone : " + customerPhone + "\n" +
-"🏠 Address : " + customerAddress + "\n\n" +
-"🚚 Order Type : " + deliveryType + "\n\n" +
-"📦 Items\n\n";
+
+`🛒 NAPANA SUPER PRE ORDER
+
+👤 Customer : ${customerName}
+
+📞 Phone : ${customerPhone}
+
+🏠 Address : ${customerAddress}
+
+🚚 Order Type : ${deliveryType}
+
+📦 Items
+
+`;
+
+cart.forEach(item=>{
+
+const itemTotal =
+item.price * item.qty;
+
+grandTotal += itemTotal;
+
+totalItems +=
+parseInt(item.qty);
+
+message +=
+
+`• ${item.name}
+- ${item.type}
+- ${item.weight}
+x${item.qty}
+
+Rs.${itemTotal}
+
+`;
+
+});
+
+message +=
+
+`
+
+🧮 Total Items : ${totalItems}
+
+💰 Total Bill : Rs.${grandTotal}
+
+🏪 Napana Super
+EST. 2019
+
+📍 7/B Napana, Gunnapana
+
+📞 0707103215`;
+
+window.open(
+`https://wa.me/94707103215?text=${encodeURIComponent(message)}`
+);
+
+});
+
+}
 
 cart.forEach(item => {
 
