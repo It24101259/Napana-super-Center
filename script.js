@@ -133,6 +133,10 @@ function addSelectedProduct(){
 if(!brand.value || !type.value || !weight.value){
 alert("Please select product");
 return;
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 }
 
 const qty =
@@ -177,6 +181,10 @@ document.getElementById("cartItems");
 if(cart.length === 0){
 cartDiv.innerHTML = "No Items Added";
 return;
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 }
 
 let html = "";
