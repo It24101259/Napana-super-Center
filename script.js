@@ -115,6 +115,14 @@ p.type === type.value
 );
 
 if(item){
+    document.getElementById("previewImage").src =
+item.image;
+
+document.getElementById("previewName").innerHTML =
+item.brand + " - " + item.type;
+
+document.getElementById("previewStock").innerHTML =
+"Stock : " + item.stock;
 
 item.weights.forEach(w => {
 weight.innerHTML += `<option value="${w}">${w}</option>`;
