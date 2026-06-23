@@ -562,3 +562,30 @@ JSON.stringify(cart)
 loadCartPage();
 
 }
+weight.addEventListener("change",()=>{
+
+const item =
+products.find(
+
+p=>
+
+p.category===category.value &&
+
+p.brand===brand.value &&
+
+p.type===type.value
+
+);
+
+if(item){
+
+const price =
+item.prices[weight.value];
+
+document.getElementById("previewPrice")
+.innerHTML =
+"Price : Rs." + price;
+
+}
+
+});
