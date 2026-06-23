@@ -1,152 +1,265 @@
+// LOADER
+window.onload = function () {
+    const loader = document.getElementById("loader");
+
+    if (loader) {
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 1500);
+    }
+};
+
+// CART
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// ELEMENTS
 const category = document.getElementById("category");
 const brand = document.getElementById("brand");
 const type = document.getElementById("type");
 const weight = document.getElementById("weight");
 
-// Load Categories
-const categories = [...new Set(products.map(p => p.category))];
+// CUSTOMER SAVE
+function saveCustomer() {
 
-categories.forEach(cat => {
-    category.innerHTML += `<option value="${cat}">${cat}</option>`;
-});
+    const name =
+        document.getElementById("customerName").value;
 
-// Category Change
-category.addEventListener("change", () => {
+    const phone =
+        document.getElementById("customerPhone").value;
 
-    brand.innerHTML =
-    '<option value="">Select Brand</option>';
+    const address =
+        document.getElementById("customerAddress").value;
 
-    type.innerHTML =
-    '<option value="">Select Type</option>';
+    if (!name || !phone) {
 
-    weight.innerHTML =
-    '<option value="">Select Weight</option>';
+        alert("Please enter Name and Phone Number");
+        return;
 
-    const brands = [...new Set(
-        products
-        .filter(p => p.category === category.value)
-        .map(p => p.brand)
-    )];
+    }
 
-    brands.forEach(b => {
-        brand.innerHTML +=
-        `<option value="${b}">${b}</option>`;
+    localStorage.setItem("customerName", name);
+    localStorage.setItem("customerPhone", phone);
+    localStorage.setItem("customerAddress", address);
+
+    alert("Welcome " + name);
+}
+
+// LOAD CATEGORIES
+if (category) {
+
+    const categories =
+        [...new Set(products.map(p => p.category))];
+
+    categories.forEach(cat => {
+
+        category.innerHTML +=
+            `<option value="${cat}">${cat}</option>`;
+
     });
 
-});
+}
 
-// Brand Change
-brand.addEventListener("change", () => {
+// CATEGORY CHANGE
+if (category) {
 
-    type.innerHTML =
-    '<option value="">Select Type</option>';
+    category.addEventListener("change", function () {
 
-    const types = [...new Set(
-        products
-        .filter(
-            p =>
-            p.category === category.value &&
-            p.brand === brand.value
-        )
-        .map(p => p.type)
-    )];
+        brand.innerHTML =
+            '<option value="">Select Brand</option>';
 
-    types.forEach(t => {
-        type.innerHTML +=
-        `<option value="${t}">${t}</option>`;
-    });
+        type.innerHTML =
+            '<option value="">Select Type</option>';
 
-});
+        weight.innerHTML =
+            '<option value="">Select Weight</option>';
 
-// Type Change
-type.addEventListener("change", () => {
+        const brands =
+            [...new Set(
 
-    weight.innerHTML =
-    '<option value="">Select Weight</option>';
+                products
+                    .filter(
+                        p => p.category === category.value
+                    )
+                    .map(
+                        p => p.brand
+                    )
 
-    const item = products.find(
-        p =>
-        p.category === category.value &&
-        p.brand === brand.value &&
-        p.type === type.value
-    );
+            )];
 
-    if(item){
+        brands.forEach(b => {
 
-        item.weights.forEach(w => {
-
-            weight.innerHTML +=
-            `<option value="${w}">${w}</option>`;
+            brand.innerHTML +=
+                `<option value="${b}">
+                ${b}
+                </option>`;
 
         });
 
-        document.getElementById("previewImage").src =
-        item.image || "logo.png";
+    });
 
-        document.getElementById("previewName").innerHTML =
-        item.brand + " - " + item.type;
+}
 
-        document.getElementById("previewStock").innerHTML =
-        "Stock : " + (item.stock || 0);
+// BRAND CHANGE
+if (brand) {
 
-    }
+    brand.addEventListener("change", function () {
 
-});
+        type.innerHTML =
+            '<option value="">Select Type</option>';
 
-// Weight Change
-weight.addEventListener("change", () => {
+        weight.innerHTML =
+            '<option value="">Select Weight</option>';
 
-    const item = products.find(
-        p =>
-        p.category === category.value &&
-        p.brand === brand.value &&
-        p.type === type.value
-    );
+        const types =
+            [...new Set(
 
-    if(item){
+                products
+                    .filter(
 
-        const price =
-        item.prices[weight.value];
+                        p =>
 
-        document.getElementById("previewPrice").innerHTML =
-        "Price : Rs." + price;
+                            p.category === category.value &&
+                            p.brand === brand.value
 
-    }
+                    )
 
-});
+                    .map(
+                        p => p.type
+                    )
 
-// Add To Cart
-function addSelectedProduct(){
+            )];
 
-    if(
+        types.forEach(t => {
+
+            type.innerHTML +=
+                `<option value="${t}">
+                ${t}
+                </option>`;
+
+        });
+
+    });
+
+}
+
+// TYPE CHANGE
+if (type) {
+
+    type.addEventListener("change", function () {
+
+        weight.innerHTML =
+            '<option value="">Select Weight</option>';
+
+        const item =
+            products.find(
+
+                p =>
+
+                    p.category === category.value &&
+                    p.brand === brand.value &&
+                    p.type === type.value
+
+            );
+
+        if (item) {
+
+            item.weights.forEach(w => {
+
+                weight.innerHTML +=
+                    `<option value="${w}">
+                    ${w}
+                    </option>`;
+
+            });
+
+            document.getElementById(
+                "previewImage"
+            ).src = item.image;
+
+            document.getElementById(
+                "previewName"
+            ).innerHTML =
+                item.brand + " - " + item.type;
+
+            document.getElementById(
+                "previewStock"
+            ).innerHTML =
+                "Stock : " + item.stock;
+
+        }
+
+    });
+
+}
+
+// WEIGHT CHANGE
+if (weight) {
+
+    weight.addEventListener("change", function () {
+
+        const item =
+            products.find(
+
+                p =>
+
+                    p.category === category.value &&
+                    p.brand === brand.value &&
+                    p.type === type.value
+
+            );
+
+        if (item) {
+
+            document.getElementById(
+                "previewPrice"
+            ).innerHTML =
+                "Price : Rs." +
+                item.prices[weight.value];
+
+        }
+
+    });
+
+}
+
+// ADD TO CART
+function addSelectedProduct() {
+
+    if (
         !category.value ||
         !brand.value ||
         !type.value ||
         !weight.value
-    ){
-        alert("Select Product");
+    ) {
+
+        alert("Please Select Product");
         return;
+
     }
 
-    const item = products.find(
-        p =>
-        p.category === category.value &&
-        p.brand === brand.value &&
-        p.type === type.value
-    );
+    const item =
+        products.find(
+
+            p =>
+
+                p.category === category.value &&
+                p.brand === brand.value &&
+                p.type === type.value
+
+        );
 
     const qty =
-    parseInt(document.getElementById("qty").value);
+        parseInt(
+            document.getElementById("qty").value
+        );
 
     cart.push({
 
-        name:item.brand,
-        type:item.type,
-        weight:weight.value,
-        qty:qty,
-        price:item.prices[weight.value]
+        name: item.brand,
+        type: item.type,
+        weight: weight.value,
+        qty: qty,
+        price: item.prices[weight.value]
 
     });
 
