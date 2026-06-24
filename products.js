@@ -35,7 +35,7 @@ category:"Rice",
 brand:"Araliya",
 type:"Keeri Samba",
 stock:40,
-image:"araliya.jpg.PNG",
+image:"images/araliya.jpg",
 weights:["1kg","2kg","5kg","10kg"],
 prices:{
 "1kg":320,
